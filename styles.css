@@ -1,0 +1,63 @@
+#header {
+    height: 100px;
+    text-align: center;
+    background-color: lavender;
+    margin: 10px 1%;
+    border-radius: 30px;
+    line-height: 100px;
+    border: solid darkblue 2px;
+}
+
+#navbar {
+	width: 10%;
+	float: left;
+	text-align: center;
+	height: 81%;
+    background-color: cornsilk;
+    border-radius: 30px;
+    margin: 10px 1% 0 1%;
+    border: solid lightcoral 2px;
+    padding: 1% 1.5%;
+}
+
+#main {
+    overflow-y: auto;
+    width: 80%;
+    height: 81%;
+    margin: 10px 1% 0 0;
+    float: right;
+    border: solid lightseagreen 2px;
+    border-radius: 30px;
+    padding: 1% 1.5%;
+}
+
+#vis-body {
+	overflow-y: auto;
+}
+
+.nice-button {
+	background-color: lightseagreen;
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    padding: 0.6em;
+    border-radius: 15px;
+    border: none;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    margin: 5px 0;
+}
+
+#title {
+    font-size: 3.5em;
+    margin: 0;
+    color: darkblue;
+    font-family: "Palatino Linotype", "Book Antiqua", serif;
+}
+
+#navtitle {
+    margin: 25px 0;
+    color: lightcoral;
+    font-family: Helvetica;
+    font-weight: 750;
+    font-size: 1.5em;
+}
