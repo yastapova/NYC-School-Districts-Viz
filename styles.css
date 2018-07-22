@@ -44,7 +44,14 @@
     border-radius: 15px;
     border: none;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
-    margin: 5px 0;
+    margin: 5px auto;
+    display: block;
+    cursor: pointer;
+}
+
+.left-button {
+	display: inline;
+	margin: 5px 0;
 }
 
 #title {
@@ -55,9 +62,33 @@
 }
 
 #navtitle {
-    margin: 25px 0;
+    margin: 20px 0;
     color: lightcoral;
-    font-family: Helvetica;
     font-weight: 750;
-    font-size: 1.5em;
+    font-size: 1.75em;
+    border-bottom: solid 1px;
+    border-top: solid 1px;
+    padding: 5px 0;
+}
+
+h1 {
+    font-size: 2em;
+    font-family: "Book Antiqua", serif;
+    color: lightcoral;
+}
+
+h2 {
+    font-size: 1.35em;
+    font-family: "Book Antiqua", serif;
+    color: darkblue;
+}
+
+a:hover, a:active {
+    color: limegreen !important;
+}
+a:visited {
+    color: lightcoral;
+}
+a {
+    color: lightseagreen;
 }
