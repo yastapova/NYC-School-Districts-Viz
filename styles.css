@@ -21,14 +21,18 @@
 }
 
 #main {
-    overflow-y: auto;
     width: 80%;
     height: 81%;
     margin: 10px 1% 0 0;
     float: right;
     border: solid lightseagreen 2px;
     border-radius: 30px;
-    padding: 1% 1.5%;
+    padding: 1% 1% 1% 1.75%;
+}
+
+#main-scroll {
+	overflow-y: auto;
+	height: 100%;
 }
 
 #vis-body {
@@ -75,6 +79,7 @@ h1 {
     font-size: 2em;
     font-family: "Book Antiqua", serif;
     color: lightcoral;
+    margin-top: 0;
 }
 
 h2 {

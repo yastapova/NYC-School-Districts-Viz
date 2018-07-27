@@ -27,7 +27,7 @@ else
 }
 localStorage.setItem("show_all_divs", JSON.stringify(show_all_divs));
 
-function NavTo(show_step, hide_step) {
+function NavTo(show_step, hide_step, gradeName) {
 	if(show_all_divs)
 	{
 		ShowAllDivs();
@@ -51,6 +51,10 @@ function NavTo(show_step, hide_step) {
 	$("#" + show_step + "-button").show();
 	$("#" + show_step + "-div").show();
 
+	if(nav_visible[show_step] === false) {
+		CreateVisualization(show_step, gradeName);
+	}
+	
 	nav_visible[show_step] = true;
 	localStorage.setItem("nav_visible", JSON.stringify(nav_visible));
 }

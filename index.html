@@ -3,6 +3,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="nav.js"></script>
+		<script src="visualizations.js"></script>
 		<link rel="stylesheet" type="text/css" href="styles.css" />
 	</head>
 
@@ -24,68 +25,70 @@
 		</div>
 
 		<div id="main">
-			<div id="start-div">
-				<h1>Welcome!</h1>
-				<p>This site contains several visualizations that explore qualities of New York City schools during the 2009-2010 school year. The dataset used for these visualizations is the 2009-2010 School Progress Reports data from the New York City Department of Education. These progress reports were the main tool for keeping track of school progress and performance during 2007-2013. Each school is graded with respect to its peer schools in three categories: student progress (graduation rates), student performance, and school environment. These individual categories receive a grade of A, B, C, D, or F, and then the three categories are rolled up into one overall grade. The dataset is publicly available on the <a href="https://data.cityofnewyork.us/Education/2009-2010-School-Progress-Reports-All-Schools/ffnc-f3aa">NYC Open Data website.</a></p>
-				<p>The visualization site is organized as follows. First, there is a guided tour of the dataset consisting of several charts, along with explanations and analysis with each one. After this, the viewer will be able to freely explore all the provided charts at their leisure. You can navigate between scenes by clicking on the Prev/Next buttons that will appear at the bottom of the scene (where the Start button is currently located), or by clicking on the scene's corresponding navigation button, which will appear in the navigation pane on the left side of the screen.</p>
-				<p>You may also hit the Reset button in the navigation pane at any time to reset the state of the visualizations and start the tour over again.</p>
-				<p class="hideable">Hit the button below to get started!</p>
-				<button id="start-button" class="nice-button left-button hideable" onclick="NavTo('step1', 'start');">Start</button>
-			</div>
+			<div id="main-scroll">
+				<div id="start-div">
+					<h1>Welcome!</h1>
+					<p>This site contains several visualizations that explore qualities of New York City schools during the 2009-2010 school year. The dataset used for these visualizations is the 2009-2010 School Progress Reports data from the New York City Department of Education. These progress reports were the main tool for keeping track of school progress and performance during 2007-2013. Each school is graded with respect to its peer schools in three categories: student progress (graduation rates), student performance, and school environment. These individual categories receive a grade of A, B, C, D, or F, and then the three categories are rolled up into one overall grade. The dataset is publicly available on the <a href="https://data.cityofnewyork.us/Education/2009-2010-School-Progress-Reports-All-Schools/ffnc-f3aa">NYC Open Data website.</a></p>
+					<p>The visualization site is organized as follows. First, there is a guided tour of the dataset consisting of several charts, along with explanations and analysis with each one. After this, the viewer will be able to freely explore all the provided charts at their leisure. You can navigate between scenes by clicking on the Prev/Next buttons that will appear at the bottom of the scene (where the Start button is currently located), or by clicking on the scene's corresponding navigation button, which will appear in the navigation pane on the left side of the screen.</p>
+					<p>You may also hit the Reset button in the navigation pane at any time to reset the state of the visualizations and start the tour over again.</p>
+					<p class="hideable">Hit the button below to get started!</p>
+					<button id="start-button" class="nice-button left-button hideable" onclick="NavTo('step1', 'start', 'heatmap');">Start</button>
+				</div>
 
-			<div id="step1-div" style="display:none">
-				<h1>District Composition</h1>
-				<p>Before we dive into the scores of the schools, it would be helpful to understand what types of schools compose each district. The heatmap below shows how many schools of each type there are in each district. You may mouseover the heatmap to get more details. Schools are divided into several types:</p>
-				<ul>
-					<li><b>Elementary Schools</b> - Schools for Kindergarten through 5th grade</li>
-					<li><b>Middle Schools</b> - Schools for 6th through 8th grade</li>
-					<li><b>High Schools</b> - Schools for 9th through 12th grade</li>
-					<li><b>K-2 Schools</b> - Schools for Kindergarten through 2nd grade</li>
-					<li><b>K-3 Schools</b> - Schools for Kindergarten through 3rd grade</li>
-					<li><b>K-8 Schools</b> - Schools for Kindergarten through 8th grade</li>
-					<li><b>Transfer High Schools</b> - Small, full-time high schools for students who have dropped out or fallen behind in credits</li>
-					<li><b>YABC Schools</b> - Young Adult Borough Centers help overage and under-credited high school students get a high school diploma</li>
-				</ul>
-				<svg id="step1-canvas" height="400px" width="1000px"></svg>
-				<br />
-				<button id="step1-button-prev" class="nice-button left-button hideable" onclick="NavTo('start', 'step1');">Prev</button>
-				<button id="step1-button-next" class="nice-button left-button hideable" onclick="NavTo('step2', 'step1');">Next</button>
-			</div>
+				<div id="step1-div" style="display:none">
+					<h1>District Composition</h1>
+					<p>Before we dive into the scores of the schools, it would be helpful to understand what types of schools compose each district. The heatmap below shows how many schools of each type there are in each district. You may mouseover the heatmap to get more details. Schools are divided into several types:</p>
+					<ul>
+						<li><b>Elementary Schools</b> - Schools for Kindergarten through 5th grade</li>
+						<li><b>Middle Schools</b> - Schools for 6th through 8th grade</li>
+						<li><b>High Schools</b> - Schools for 9th through 12th grade</li>
+						<li><b>K-2 Schools</b> - Schools for Kindergarten through 2nd grade</li>
+						<li><b>K-3 Schools</b> - Schools for Kindergarten through 3rd grade</li>
+						<li><b>K-8 Schools</b> - Schools for Kindergarten through 8th grade</li>
+						<li><b>Transfer High Schools</b> - Small, full-time high schools for students who have dropped out or fallen behind in credits</li>
+						<li><b>YABC Schools</b> - Young Adult Borough Centers help overage and under-credited high school students get a high school diploma</li>
+					</ul>
+					<svg id="step1-canvas" height="500px" width="1200px"></svg>
+					<br />
+					<button id="step1-button-prev" class="nice-button left-button hideable" onclick="NavTo('start', 'step1', '');">Prev</button>
+					<button id="step1-button-next" class="nice-button left-button hideable" onclick="NavTo('step2', 'step1', 'overall');">Next</button>
+				</div>
 
-			<div id="step2-div" style="display:none">
-				<h1>Overall Grades</h1>
-				<p></p>
-				<svg id="step2-canvas"></svg>
-				<br />
-				<button id="step2-button-prev" class="nice-button left-button hideable" onclick="NavTo('step1', 'step2');">Prev</button>
-				<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step3', 'step2');">Next</button>
-			</div>
+				<div id="step2-div" style="display:none">
+					<h1>Overall Grades</h1>
+					<p></p>
+					<svg id="step2-canvas" height="500px" width="1200px"></svg>
+					<br />
+					<button id="step2-button-prev" class="nice-button left-button hideable" onclick="NavTo('step1', 'step2', '');">Prev</button>
+					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step3', 'step2', 'env');">Next</button>
+				</div>
 
-			<div id="step3-div" style="display:none">
-				<h1>Environment Grades</h1>
-				<p></p>
-				<svg id="step3-canvas"></svg>
-				<br />
-				<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3');">Prev</button>
-				<button id="step3-button-next" class="nice-button left-button hideable" onclick="NavTo('step4', 'step3');">Next</button>
-			</div>
+				<div id="step3-div" style="display:none">
+					<h1>Environment Grades</h1>
+					<p></p>
+					<svg id="step3-canvas" height="500px" width="1200px"></svg>
+					<br />
+					<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3', '');">Prev</button>
+					<button id="step3-button-next" class="nice-button left-button hideable" onclick="NavTo('step4', 'step3', 'perf');">Next</button>
+				</div>
 
-			<div id="step4-div" style="display:none">
-				<h1>Performance Grades</h1>
-				<p></p>
-				<svg id="step4-canvas"></svg>
-				<br />
-				<button id="step4-button-prev" class="nice-button left-button hideable" onclick="NavTo('step3', 'step4');">Prev</button>
-				<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step5', 'step4');">Next</button>
-			</div>
+				<div id="step4-div" style="display:none">
+					<h1>Performance Grades</h1>
+					<p></p>
+					<svg id="step4-canvas" height="500px" width="1200px"></svg>
+					<br />
+					<button id="step4-button-prev" class="nice-button left-button hideable" onclick="NavTo('step3', 'step4', '');">Prev</button>
+					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step5', 'step4', 'prog');">Next</button>
+				</div>
 
-			<div id="step5-div" style="display:none">
-				<h1>Progress Grades</h1>
-				<p></p>
-				<svg id="step5-canvas"></svg>
-				<br />
-				<button id="step5-button-prev" class="nice-button left-button hideable" onclick="NavTo('step4', 'step5');">Prev</button>
-				<button id="step5-button-next" class="nice-button left-button hideable" onclick="ShowAllDivs();">Finish</button>
+				<div id="step5-div" style="display:none">
+					<h1>Progress Grades</h1>
+					<p></p>
+					<svg id="step5-canvas" height="500px" width="1200px"></svg>
+					<br />
+					<button id="step5-button-prev" class="nice-button left-button hideable" onclick="NavTo('step4', 'step5', '');">Prev</button>
+					<button id="step5-button-next" class="nice-button left-button hideable" onclick="ShowAllDivs();">Finish</button>
+				</div>
 			</div>
 		</div>
 
