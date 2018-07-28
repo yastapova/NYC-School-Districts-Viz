@@ -48,7 +48,7 @@
 						<li><b>Transfer High Schools</b> - Small, full-time high schools for students who have dropped out or fallen behind in credits</li>
 						<li><b>YABC Schools</b> - Young Adult Borough Centers help overage and under-credited high school students get a high school diploma</li>
 					</ul>
-					<svg id="step1-canvas" height="500px" width="1200px"></svg>
+					<svg id="step1-canvas" height="400px" width="1200px"></svg>
 					<br />
 					<button id="step1-button-prev" class="nice-button left-button hideable" onclick="NavTo('start', 'step1', '');">Prev</button>
 					<button id="step1-button-next" class="nice-button left-button hideable" onclick="NavTo('step2', 'step1', 'overall');">Next</button>
@@ -61,6 +61,7 @@
 					<br />
 					<button id="step2-button-prev" class="nice-button left-button hideable" onclick="NavTo('step1', 'step2', '');">Prev</button>
 					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step3', 'step2', 'env');">Next</button>
+					<button id="step2-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step2-canvas', 'overall');">Reload Chart</button>
 				</div>
 
 				<div id="step3-div" style="display:none">
@@ -70,6 +71,7 @@
 					<br />
 					<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3', '');">Prev</button>
 					<button id="step3-button-next" class="nice-button left-button hideable" onclick="NavTo('step4', 'step3', 'perf');">Next</button>
+					<button id="step3-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step3-canvas', 'env');">Reload Chart</button>
 				</div>
 
 				<div id="step4-div" style="display:none">
@@ -79,6 +81,7 @@
 					<br />
 					<button id="step4-button-prev" class="nice-button left-button hideable" onclick="NavTo('step3', 'step4', '');">Prev</button>
 					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step5', 'step4', 'prog');">Next</button>
+					<button id="step4-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step4-canvas', 'perf');">Reload Chart</button>
 				</div>
 
 				<div id="step5-div" style="display:none">
@@ -88,11 +91,12 @@
 					<br />
 					<button id="step5-button-prev" class="nice-button left-button hideable" onclick="NavTo('step4', 'step5', '');">Prev</button>
 					<button id="step5-button-next" class="nice-button left-button hideable" onclick="ShowAllDivs();">Finish</button>
+					<button id="step5-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step5-canvas', 'prog');">Reload Chart</button>
 				</div>
 			</div>
 		</div>
 
-		<div id="tooltip" style="display:none;"></div>
+		<div id="tooltip" style="opacity:0;"></div>
 		<script>WhatToShow();</script>
 	</body>
 </html>
