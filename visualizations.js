@@ -61,6 +61,8 @@ function CreateVisualization(step, gradeName) {
 	{
 		CreateBarChart(step + "-canvas", gradeName);
 	}
+
+	CreateAnnotations(step);
 }
 
 function CreateBarChart(canvasName, gradeName) {
@@ -328,4 +330,247 @@ function CreateHeatmap(canvasName) {
     g.append("text")
     	.text("52")
     	.attr("transform", "translate(" + (((width - pad)/2) + 62) + ", " + (height - 5) + ")")
+}
+
+function CreateAnnotations(step) {
+	var svg = d3.select("#" + step + "-canvas");
+	var canvas = $("#" + step + "-canvas");
+	var height = canvas.height();
+	var width = canvas.width();
+	
+	var g = svg.append("g");
+
+	var transition = d3.transition()
+		.delay(1200)
+		.duration(600);
+
+	switch(step) {
+		case "step1":
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width/2 + 330)
+				.attr("y", height - 30)
+				.text("District 79 represents YABC programs,")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width/2 + 330)
+				.attr("y", height - 18)
+				.text("but most are part of other districts.")
+				.transition(transition)
+					.style("opacity", "1");
+
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", pad*1.5)
+				.attr("y", height - 30)
+				.text("District 2 has the most high schools.")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", pad*1.5)
+				.attr("y", height - 18)
+				.text("Mouse over for more details.")
+				.transition(transition)
+					.style("opacity", "1");
+
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", 150)
+				.attr("y1", height - 45)
+				.attr("x2", 150)
+				.attr("y2", 140)
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", width - 190)
+				.attr("y1", height - 45)
+				.attr("x2", width - 190)
+				.attr("y2", height - 90)
+				.transition(transition)
+					.style("opacity", "1");
+
+			break;
+
+		case "step2":
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 110)
+				.text("Districts 18 & 84")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 95)
+				.text("have the most")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 80)
+				.text("missing data. Mouse")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 65)
+				.text("over for details.")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", width - pad*1.6)
+				.attr("y1", height - 88)
+				.attr("x2", width - pad*2.3)
+				.attr("y2", height - 88)
+				.transition(transition)
+					.style("opacity", "1");
+
+			break;
+
+		case "step3":
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 110)
+				.text("There are more")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 95)
+				.text("D & F scores across")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 80)
+				.text("the board for")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 65)
+				.text("environment.")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", width - pad*1.6)
+				.attr("y1", height - 85)
+				.attr("x2", width - pad*3.1)
+				.attr("y2", height - 85)
+				.transition(transition)
+					.style("opacity", "1");
+
+			break;
+
+		case "step4":
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 110)
+				.text("Almost half of the")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 95)
+				.text("schools in district 75")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 80)
+				.text("have a failing grade.")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", width - pad*1.6)
+				.attr("y1", height - 95)
+				.attr("x2", width - pad*3.1)
+				.attr("y2", height - 95)
+				.transition(transition)
+					.style("opacity", "1");
+
+			break;
+
+		case "step5":
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 200)
+				.text("Low progress grades")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 185)
+				.text("may point to issues")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 170)
+				.text("in the city's charter")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("text")
+				.attr("class", "annot")
+				.style("opacity", "0")
+				.attr("x", width - pad*1.5)
+				.attr("y", height - 155)
+				.text("school system.")
+				.transition(transition)
+					.style("opacity", "1");
+			g.append("line")
+				.attr("class",  "arrow annot")
+				.style("opacity", "0")
+				.attr("x1", width - pad*1.6)
+				.attr("y1", height - 180)
+				.attr("x2", width - pad*2.3)
+				.attr("y2", height - 180)
+				.transition(transition)
+					.style("opacity", "1");
+
+			break;
+	}
 }

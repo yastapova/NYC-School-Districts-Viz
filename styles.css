@@ -83,7 +83,7 @@
     font-family: "Palatino Linotype", "Book Antiqua", serif;
 }
 
-#navtitle {
+.navtitle {
     margin: 20px 0;
     color: lightcoral;
     font-weight: 750;
@@ -148,4 +148,14 @@ p {
     font-weight: 800;
     margin-left: 8px;
     display: none;
+}
+
+text.annot {
+    font-size: 12;
+}
+
+.arrow {
+    stroke-width:2;
+    stroke:#000;
+    stroke-dasharray:6, 4;
 }

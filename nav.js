@@ -27,6 +27,17 @@ else
 }
 localStorage.setItem("show_all_divs", JSON.stringify(show_all_divs));
 
+annotations = localStorage.getItem("annotations");
+if(annotations === undefined || annotations === "null" || annotations === null)
+{
+	annotations = true;
+}
+else
+{
+	annotations = JSON.parse(annotations);
+}
+localStorage.setItem("annotations", JSON.stringify(annotations));
+
 step_vis_type = {
 	"step1" : "heatmap",
 	"step2" : "overall",
@@ -76,6 +87,7 @@ function Reset() {
 
 	localStorage.setItem("nav_visible", JSON.stringify(nav_visible));
 	localStorage.setItem("show_all_divs", JSON.stringify(show_all_divs));
+	ToggleAnnotations(true);
 
 	location.href='index.html';
 }
@@ -119,4 +131,24 @@ function WhatToShow() {
 			}
 		}
 	}
+}
+
+function ToggleAnnotations(turn) {
+	window.annotations = turn;
+	var button = $("#annot-button");
+
+	if(turn === true)
+	{
+		button.html("Turn Off Annotations");
+		button.attr("onclick", "ToggleAnnotations(false);")
+		$(".annot").show();
+	}
+	else
+	{
+		button.html("Turn On Annotations");
+		button.attr("onclick", "ToggleAnnotations(true);")
+		$(".annot").hide();
+	}
+	
+	localStorage.setItem("annotations", JSON.stringify(annotations));
 }
