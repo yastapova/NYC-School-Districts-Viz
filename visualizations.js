@@ -74,11 +74,35 @@ function CreateBarChart(canvasName, gradeName) {
 	var xScale = d3.scaleBand()
 		.domain(districtList)
 		.rangeRound([pad, width - (pad*2)])
-		.padding(0.1);
+		.padding(0.2);
 
 	var colorScale = d3.scaleOrdinal()
 		.domain(gradesList)
 		.range(gradesColors);
+
+	g.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(0, " + (height - (pad/2)) + ")")
+		.call(d3.axisBottom(xScale));
+
+	g.append("text")
+		.attr("transform", "translate(" + ((width - pad)/2) + ", " + (height) + ")")
+		.style("text-anchor", "middle")
+		.text("School District");
+
+	g.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(" + pad + ",  0)")
+		.call(d3.axisLeft(yScale)
+			.ticks(10, "%")
+			.tickSizeInner(-(width - (pad*3))));
+
+    g.append("text")
+    	.attr("transform", "rotate(-90) translate(" + (-(height/2)) + ", 10)")
+    	.attr("dy", "1em")
+    	.style("text-anchor", "middle")
+    	.text("Percent of Schools");
+
 
 	var transition = d3.transition()
 		.duration(1000);
@@ -131,27 +155,6 @@ function CreateBarChart(canvasName, gradeName) {
 			})
 			.transition(transition)
 				.attr("height", function(d) { return yScale(1 - d[1]) - yScale(1 - d[0]) });
-			
-	g.append("g")
-		.attr("class", "axis")
-		.attr("transform", "translate(0, " + (height - (pad/2)) + ")")
-		.call(d3.axisBottom(xScale));
-
-	g.append("text")
-		.attr("transform", "translate(" + ((width - pad)/2) + ", " + (height) + ")")
-		.style("text-anchor", "middle")
-		.text("School District");
-
-	g.append("g")
-		.attr("class", "axis")
-		.attr("transform", "translate(" + pad + ",  0)")
-		.call(d3.axisLeft(yScale).ticks(10, "%"));
-
-    g.append("text")
-    	.attr("transform", "rotate(-90) translate(" + (-(height/2)) + ", 10)")
-    	.attr("dy", "1em")
-    	.style("text-anchor", "middle")
-    	.text("Percent of Schools");
 
     g.append("text")
     	.attr("transform", "translate(" + (width - pad) + ", " + pad + ")")
