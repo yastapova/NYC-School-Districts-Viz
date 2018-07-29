@@ -1,5 +1,7 @@
 # NYC School District Quality Visualizations
 
+You may view this project [here](https://yastapova.github.io/NYC-School-Districts-Viz/).
+
 This site contains several visualizations that explore qualities of New York City schools during the 2009-2010 school year. The dataset used for these visualizations is the 2009-2010 School Progress Reports data from the New York City Department of Education. These progress reports were the main tool for keeping track of school progress and performance during 2007-2013. Each school is graded with respect to its peer schools in three categories: student progress (graduation rates), student performance, and school environment. These individual categories receive a grade of A, B, C, D, or F, and then the three categories are rolled up into one overall grade. The dataset is publicly available on the [NYC Open Data website](https://data.cityofnewyork.us/Education/2009-2010-School-Progress-Reports-All-Schools/ffnc-f3aa).
 
 This site is composed of five visualizations: one heatmap and four normalized stacked bar charts. Each chart makes use of animated transitions, mouseover tooltips, and annotations. This was written in HTML/CSS and Javascript, and uses the D3.js (v4) and jQuery libraries. Python 3 was used for processing the data prior to visualizing it. This project has been tested for compatibility with Chrome, Firefox, Edge, and Internet Explorer 11. I make no promises about Safari or any other browser.
