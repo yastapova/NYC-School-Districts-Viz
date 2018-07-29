@@ -7,6 +7,9 @@ var districtList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 					"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
 					"21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
 					"31", "32", "75", "79", "84"];
+var schoolLevels = ["ES", "MS", "HS", "K2", "K3", "K8", "HST", "YABC"];
+var schoolLevelNames = ["Elementary", "Middle", "High", "K-2", "K-3", "K-8", "Transfer", "YABC"];
+
 $(document).ready(function() {
 	data = localStorage.getItem("data");
 	if(data === undefined || data === "null" || data === null)
@@ -51,11 +54,11 @@ function LoadData() {
 function CreateVisualization(step, gradeName) {
 	if(step === "step1")
 	{
-		// put heatmap here
+		CreateHeatmap(step + "-canvas");
 	}
 	else if(step !== "reset" && step !== "start")
 	{
-		CreateBarChart(step + "-canvas", gradeName)
+		CreateBarChart(step + "-canvas", gradeName);
 	}
 }
 
@@ -102,7 +105,6 @@ function CreateBarChart(canvasName, gradeName) {
     	.attr("dy", "1em")
     	.style("text-anchor", "middle")
     	.text("Percent of Schools");
-
 
 	var transition = d3.transition()
 		.duration(1000);
@@ -181,4 +183,148 @@ function CreateBarChart(canvasName, gradeName) {
     		.text(function(d) { return d; })
     		.attr("x", width - (pad * 0.85))
     		.attr("y", function(d, i) { return pad * 1.45 + i * 30; });
+}
+
+function CreateHeatmap(canvasName) {
+	var svg = d3.select("#" + canvasName);
+	d3.selectAll("#" + canvasName + " > *").remove();
+	var canvas = $("#" + canvasName);
+	var height = canvas.height();
+	var width = canvas.width();
+	var xpad = 100;
+	var max_schools = 52;
+	var g = svg.append("g");
+
+	var yScale = d3.scaleBand()
+		.domain(schoolLevelNames)
+		.rangeRound([(pad*2/3), height - pad])
+		.padding(0.1);
+
+	var xScale = d3.scaleBand()
+		.domain(districtList)
+		.rangeRound([xpad, width - (pad*2)])
+		.padding(0.1);
+
+	var colorScale = d3.scaleLinear()
+		.domain([1, max_schools])
+		.range(["lavender", "darkblue"]);
+
+	g.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(0, " + (pad*2/3) + ")")
+		.call(d3.axisTop(xScale).tickSize(0));
+
+	g.append("text")
+		.attr("transform", "translate(" + ((width - pad)/2) + ", 15)")
+		.style("text-anchor", "middle")
+		.text("School District");
+
+	g.append("g")
+		.attr("class", "axis")
+		.attr("transform", "translate(" + xpad + ",  0)")
+		.call(d3.axisLeft(yScale).tickSize(0));
+
+    g.append("text")
+    	.attr("transform", "rotate(-90) translate(" + (-(height/2)) + ", 10)")
+    	.attr("dy", "1em")
+    	.style("text-anchor", "middle")
+    	.text("School Level");
+
+	var transition = d3.transition()
+		.duration(1000);
+
+	var tooltip = d3.select("#tooltip");
+
+	var stack = d3.stack()
+		.keys(schoolLevelNames)
+		.value(function(d, key) { return key; })
+		.order(d3.stackOrderNone)
+		.offset(d3.stackOffsetNone);
+
+	var series = stack(data);
+
+	var serie = g.selectAll(".series")
+		.data(series)
+		.enter().append("g")
+			.attr("class", function(d) { return "series " + d.key; });
+
+	serie.selectAll(".heatbox")
+		.data(function(d) { return d; })
+		.enter().append("rect")
+			.attr("class", "heatbox")
+			.attr("x", function(d) { return xScale(d.data.district); })
+			.attr("y", function(d) { 
+				var level = $(this.parentNode).attr("class").split(" ")[1];
+				return yScale(level);
+			})
+			.attr("fill", "white")
+			.attr("height", yScale.bandwidth())
+			.attr("width", xScale.bandwidth())
+			.on("mouseover", function(d) {
+				var levelName = $(this.parentNode).attr("class").split(" ")[1];
+				var i = schoolLevelNames.indexOf(levelName);
+				var level = schoolLevels[i];
+				var num = d.data["num_" + level];
+
+				tooltip.transition()
+					.duration(200)
+					.style("opacity", 0.9);
+				tooltip.html("<b>District: </b>" + d.data.district + "<br />"
+						+ "<b>Level: </b>" + levelName + "<br />"
+						+ "<b>Num Schools: </b>" + num)
+					.style("left", (d3.event.pageX + 10) + "px")
+					.style("top", (d3.event.pageY + 10) + "px");
+			})
+			.on("mouseout", function(d) {
+				tooltip.transition()
+					.duration(500)
+					.style("opacity", 0);
+			})
+			.transition(transition)
+				.delay(function(d, i) { return i * 30; })
+				.attr("fill", function(d) {
+					var levelName = $(this.parentNode).attr("class").split(" ")[1];
+					var i = schoolLevelNames.indexOf(levelName);
+					var level = schoolLevels[i];
+					var num = d.data["num_" + level];
+
+					if(num == 0)
+						return "white";
+					else
+						return colorScale(num);
+				});
+
+	g.append("text")
+		.attr("transform", "translate(" + ((width - pad)/2) + ", " + (height - (pad/2)) + ")")
+    	.style("text-anchor", "middle")
+    	.style("font-weight", 800)
+    	.style("font-size", 20)
+    	.style("text-decoration", "underline")
+    	.text("Legend");
+
+    g.selectAll(".legend-box")
+    	.data(function() {
+    		var legendData = [];
+    		for(var i = 1; i <= max_schools; i++)
+    		{
+    			legendData.push(i);
+    		}
+    		return legendData;
+    	})
+    	.enter().append("rect")
+    		.attr("class", "legend-box")
+    		.attr("fill", function(d) { return colorScale(d); })
+    		.attr("x", function(d, i) { return ((width - pad)/2) - 52 + (i-1)*2; })
+    		.attr("y", height - 20)
+    		.attr("height", 20)
+    		.attr("width", 5);
+
+    g.append("text")
+    	.text("1")
+    	.attr("transform", "translate(" + (((width - pad)/2) - 72) + ", " + (height - 5) + ")")
+
+
+    g.append("text")
+    	.text("52")
+    	.attr("transform", "translate(" + (((width - pad)/2) + 62) + ", " + (height - 5) + ")")
 }
