@@ -36,7 +36,7 @@ function LoadData() {
 	window.data = [];
 
 	d3.csv("data/reorganized_data.csv", function(d) {
-		data.push(d);
+		data = d;
 
 		if(data.length % 7 === 0)
 		{
