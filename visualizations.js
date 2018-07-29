@@ -22,6 +22,7 @@ $(document).ready(function() {
 		DataDoneLoading();
 
 	}
+	WhatToShow();
 });
 
 function DataDoneLoading() {
