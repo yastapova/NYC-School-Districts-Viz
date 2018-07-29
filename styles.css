@@ -123,3 +123,29 @@ p {
 .bottom-margin {
     margin-bottom: 10px;
 }
+
+/* Loading Bar */
+#data-loading-bar {
+    margin: 15px 0;
+}
+
+.loading-box {
+    height: 15px;
+    width: 30px;
+    background-color: lavender;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#loading-data-text {
+    color: darkblue;
+    font-weight: 800;
+    margin-right: 8px;
+}
+
+#done-loading-data-text {
+    color: darkblue;
+    font-weight: 800;
+    margin-left: 8px;
+    display: none;
+}

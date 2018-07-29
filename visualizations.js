@@ -7,15 +7,25 @@ var districtList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 					"11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
 					"21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
 					"31", "32", "75", "79", "84"];
+$(document).ready(function() {
+	data = localStorage.getItem("data");
+	if(data === undefined || data === "null" || data === null)
+	{
+		LoadData();
+	}
+	else
+	{
+		data = JSON.parse(data);
+		DataDoneLoading();
 
-data = localStorage.getItem("data");
-if(data === undefined || data === "null" || data === null)
-{
-	LoadData();
-}
-else
-{
-	data = JSON.parse(data);
+	}
+});
+
+function DataDoneLoading() {
+	$(".loading-box").css("background-color", "darkblue");
+	$("#done-loading-data-text").show();
+	$("#start-button").text("Start");
+	$("#start-button").attr("onclick", "NavTo('step1', 'start', 'heatmap');");
 }
 
 function LoadData() {
@@ -24,9 +34,16 @@ function LoadData() {
 	d3.csv("data/reorganized_data.csv", function(d) {
 		data.push(d);
 
+		if(data.length % 7 === 0)
+		{
+			var box = data.length / 7;
+			$("#loading-box-" + box).css("background-color", "darkblue");
+		}
+
 		if(data.length === 35)
 		{
 			localStorage.setItem("data", JSON.stringify(data));
+			DataDoneLoading();
 		}
 	});
 }

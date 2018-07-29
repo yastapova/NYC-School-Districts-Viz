@@ -29,10 +29,19 @@
 				<div id="start-div">
 					<h1>Welcome!</h1>
 					<p>This site contains several visualizations that explore qualities of New York City schools during the 2009-2010 school year. The dataset used for these visualizations is the 2009-2010 School Progress Reports data from the New York City Department of Education. These progress reports were the main tool for keeping track of school progress and performance during 2007-2013. Each school is graded with respect to its peer schools in three categories: student progress (graduation rates), student performance, and school environment. These individual categories receive a grade of A, B, C, D, or F, and then the three categories are rolled up into one overall grade. The dataset is publicly available on the <a href="https://data.cityofnewyork.us/Education/2009-2010-School-Progress-Reports-All-Schools/ffnc-f3aa">NYC Open Data website.</a></p>
-					<p>The visualization site is organized as follows. First, there is a guided tour of the dataset consisting of several charts, along with explanations and analysis with each one. After this, the viewer will be able to freely explore all the provided charts at their leisure. You can navigate between scenes by clicking on the Prev/Next buttons that will appear at the bottom of the scene (where the Start button is currently located), or by clicking on the scene's corresponding navigation button, which will appear in the navigation pane on the left side of the screen.</p>
+					<p>The visualization site is organized as follows. First, there is a guided tour of the dataset consisting of several charts, along with explanations and analysis with each one. After this, the viewer will be able to freely explore all the provided charts at their leisure. You can navigate between scenes by clicking on the Prev/Next buttons that will appear at the bottom of the scene, or by clicking on the scene's corresponding navigation button, which will appear in the navigation pane on the left side of the screen.</p>
 					<p class="bottom-margin">If a chart does not load properly, you may manually reload it using the Reload Chart button that will appear at the bottom right corner of each scene. You may also hit the Reset button in the navigation pane at any time to reset the state of the visualizations and start the tour over again.</p>
-					<p class="bottom-margin hideable">Hit the Start button below to get started!</p>
-					<button id="start-button" class="nice-button left-button hideable" onclick="NavTo('step1', 'start', 'heatmap');">Start</button>
+					<p class="bottom-margin hideable">Please wait for the data to finish loading, and then hit the Start button to get started! (If you experience difficulties, please hit the Reload Data button.)</p>
+					<div id="data-loading-bar" class="hideable">
+						<span id="loading-data-text">Loading Data:</span>
+						<div id="loading-box-1" class="loading-box"></div>
+						<div id="loading-box-2" class="loading-box"></div>
+						<div id="loading-box-3" class="loading-box"></div>
+						<div id="loading-box-4" class="loading-box"></div>
+						<div id="loading-box-5" class="loading-box"></div>
+						<span id="done-loading-data-text">Done!</span>
+					</div>
+					<button id="start-button" class="nice-button left-button hideable" onclick="LoadData();">Reload Data</button>
 				</div>
 
 				<div id="step1-div" style="display:none">
@@ -72,7 +81,7 @@
 					<p>Luckily, as we can see from the chart below, the environment grades for schools in each district tend to be higher than the overall grades. Many more schools are in the A and B range for this metric. Of 35 school districts, 27 have at least 50% of schools in the A and B range, while 5 fall approximately on the 50% mark and 3 are clearly below 50%.</p>
 					<svg id="step3-canvas" height="500px" width="1200px"></svg>
 					<br />
-					<p class="bottom-margin">Though this is generally good news, this chart reveals an area for improvement as well. Of each district's share of schools with grades below a B, more of those schools have D or F grades than in the overall data. This means that though school generally have better environment grades than overall grades, those that do not are noticably worse in the environment category than overall. Additionally, note that some districts, like 18 and 84, have a considerable amount of unavailable data. This makes it difficult to compare these districts to others.</p>
+					<p class="bottom-margin">Though this is generally good news, this chart reveals an area for improvement as well. Of each district's share of schools with grades below a B, more of those schools have D or F grades than in the overall data. This means that though schools generally have better environment grades than overall grades, those that do not are noticeably worse in the environment category than overall. Additionally, note that some districts, like 18 and 84, have a considerable amount of unavailable data. This makes it difficult to compare these districts to others.</p>
 					<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3', 'overall');">Prev</button>
 					<button id="step3-button-next" class="nice-button left-button hideable" onclick="NavTo('step4', 'step3', 'perf');">Next</button>
 					<button id="step3-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step3-canvas', 'env');">Reload Chart</button>
