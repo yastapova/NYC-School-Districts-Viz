@@ -141,6 +141,7 @@ function ToggleAnnotations(turn) {
 	{
 		button.html("Turn Off Annotations");
 		button.attr("onclick", "ToggleAnnotations(false);")
+		$(".annot").css("opacity", "1");
 		$(".annot").show();
 	}
 	else
@@ -149,6 +150,6 @@ function ToggleAnnotations(turn) {
 		button.attr("onclick", "ToggleAnnotations(true);")
 		$(".annot").hide();
 	}
-	
+
 	localStorage.setItem("annotations", JSON.stringify(annotations));
 }

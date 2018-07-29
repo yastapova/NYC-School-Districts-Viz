@@ -349,19 +349,20 @@ function CreateAnnotations(step) {
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
-				.attr("x", width/2 + 330)
+				.attr("x", width/2 + 320)
 				.attr("y", height - 30)
-				.text("District 79 represents YABC programs,")
+				.text("District 79 consists only of YABC programs.")
 				.transition(transition)
-					.style("opacity", "1");
-			g.append("text")
-				.attr("class", "annot")
-				.style("opacity", "0")
-				.attr("x", width/2 + 330)
-				.attr("y", height - 18)
-				.text("but most are part of other districts.")
-				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			g.append("text")
 				.attr("class", "annot")
@@ -370,7 +371,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 30)
 				.text("District 2 has the most high schools.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -378,7 +388,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 18)
 				.text("Mouse over for more details.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			g.append("line")
 				.attr("class",  "arrow annot")
@@ -388,7 +407,16 @@ function CreateAnnotations(step) {
 				.attr("x2", 150)
 				.attr("y2", 140)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("line")
 				.attr("class",  "arrow annot")
 				.style("opacity", "0")
@@ -397,7 +425,16 @@ function CreateAnnotations(step) {
 				.attr("x2", width - 190)
 				.attr("y2", height - 90)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			break;
 
@@ -409,7 +446,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 110)
 				.text("Districts 18 & 84")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -417,7 +463,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 95)
 				.text("have the most")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -425,7 +480,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 80)
 				.text("missing data. Mouse")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -433,7 +497,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 65)
 				.text("over for details.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("line")
 				.attr("class",  "arrow annot")
 				.style("opacity", "0")
@@ -442,7 +515,16 @@ function CreateAnnotations(step) {
 				.attr("x2", width - pad*2.3)
 				.attr("y2", height - 88)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			break;
 
@@ -452,33 +534,69 @@ function CreateAnnotations(step) {
 				.style("opacity", "0")
 				.attr("x", width - pad*1.5)
 				.attr("y", height - 110)
-				.text("There are more")
+				.text("There are many")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
 				.attr("x", width - pad*1.5)
 				.attr("y", height - 95)
-				.text("D & F scores across")
+				.text("D & F environment")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
 				.attr("x", width - pad*1.5)
 				.attr("y", height - 80)
-				.text("the board for")
+				.text("scores across all")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
 				.attr("x", width - pad*1.5)
 				.attr("y", height - 65)
-				.text("environment.")
+				.text("districts.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("line")
 				.attr("class",  "arrow annot")
 				.style("opacity", "0")
@@ -487,7 +605,16 @@ function CreateAnnotations(step) {
 				.attr("x2", width - pad*3.1)
 				.attr("y2", height - 85)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			break;
 
@@ -499,7 +626,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 110)
 				.text("Almost half of the")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -507,7 +643,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 95)
 				.text("schools in district 75")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -515,7 +660,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 80)
 				.text("have a failing grade.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("line")
 				.attr("class",  "arrow annot")
 				.style("opacity", "0")
@@ -524,7 +678,16 @@ function CreateAnnotations(step) {
 				.attr("x2", width - pad*3.1)
 				.attr("y2", height - 95)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			break;
 
@@ -536,7 +699,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 200)
 				.text("Low progress grades")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -544,7 +716,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 185)
 				.text("may point to issues")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -552,7 +733,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 170)
 				.text("in the city's charter")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("text")
 				.attr("class", "annot")
 				.style("opacity", "0")
@@ -560,7 +750,16 @@ function CreateAnnotations(step) {
 				.attr("y", height - 155)
 				.text("school system.")
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 			g.append("line")
 				.attr("class",  "arrow annot")
 				.style("opacity", "0")
@@ -569,7 +768,16 @@ function CreateAnnotations(step) {
 				.attr("x2", width - pad*2.3)
 				.attr("y2", height - 180)
 				.transition(transition)
-					.style("opacity", "1");
+					.style("opacity", function() {
+						if(window.annotations === true)
+						{
+							return "1";
+						}
+						else
+						{
+							return "0";
+						}
+					});
 
 			break;
 	}
