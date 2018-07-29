@@ -8,11 +8,28 @@ var districtList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 					"21", "22", "23", "24", "25", "26", "27", "28", "29", "30",
 					"31", "32", "75", "79", "84"];
 
-data = [];
+data = localStorage.getItem("data");
+if(data === undefined || data === "null" || data === null)
+{
+	LoadData();
+}
+else
+{
+	data = JSON.parse(data);
+}
 
-d3.csv("data/reorganized_data.csv", function(d) {
-	data.push(d);
-});
+function LoadData() {
+	window.data = [];
+
+	d3.csv("data/reorganized_data.csv", function(d) {
+		data.push(d);
+
+		if(data.length === 35)
+		{
+			localStorage.setItem("data", JSON.stringify(data));
+		}
+	});
+}
 
 function CreateVisualization(step, gradeName) {
 	if(step === "step1")

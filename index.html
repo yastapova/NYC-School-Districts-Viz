@@ -16,11 +16,11 @@
 			<h2 id="navtitle">Navigation</h2>
 			<button id="home" class="nice-button" onclick="location.href='index.html';">Home</button>
 			<button id="about-vis" class="nice-button" onclick="location.href='about.html';">About Visualization</button>
-			<button id="step1-button" class="nice-button" style="display:none;" onclick="NavTo('step1', '');">District Composition</button>
-			<button id="step2-button" class="nice-button" style="display:none;" onclick="NavTo('step2', '');">Overall Grades</button>
-			<button id="step3-button" class="nice-button" style="display:none;" onclick="NavTo('step3', '');">Environment Grades</button>
-			<button id="step4-button" class="nice-button" style="display:none;" onclick="NavTo('step4', '');">Performance Grades</button>
-			<button id="step5-button" class="nice-button" style="display:none;" onclick="NavTo('step5', '');">Progress Grades</button>
+			<button id="step1-button" class="nice-button" style="display:none;" onclick="NavTo('step1', '', 'heatmap');">District Composition</button>
+			<button id="step2-button" class="nice-button" style="display:none;" onclick="NavTo('step2', '', 'overall');">Overall Grades</button>
+			<button id="step3-button" class="nice-button" style="display:none;" onclick="NavTo('step3', '', 'env');">Environment Grades</button>
+			<button id="step4-button" class="nice-button" style="display:none;" onclick="NavTo('step4', '', 'perf');">Performance Grades</button>
+			<button id="step5-button" class="nice-button" style="display:none;" onclick="NavTo('step5', '', 'prog');">Progress Grades</button>
 			<button id="reset-button" class="nice-button" onclick="Reset();">Reset</button>
 		</div>
 
@@ -30,8 +30,8 @@
 					<h1>Welcome!</h1>
 					<p>This site contains several visualizations that explore qualities of New York City schools during the 2009-2010 school year. The dataset used for these visualizations is the 2009-2010 School Progress Reports data from the New York City Department of Education. These progress reports were the main tool for keeping track of school progress and performance during 2007-2013. Each school is graded with respect to its peer schools in three categories: student progress (graduation rates), student performance, and school environment. These individual categories receive a grade of A, B, C, D, or F, and then the three categories are rolled up into one overall grade. The dataset is publicly available on the <a href="https://data.cityofnewyork.us/Education/2009-2010-School-Progress-Reports-All-Schools/ffnc-f3aa">NYC Open Data website.</a></p>
 					<p>The visualization site is organized as follows. First, there is a guided tour of the dataset consisting of several charts, along with explanations and analysis with each one. After this, the viewer will be able to freely explore all the provided charts at their leisure. You can navigate between scenes by clicking on the Prev/Next buttons that will appear at the bottom of the scene (where the Start button is currently located), or by clicking on the scene's corresponding navigation button, which will appear in the navigation pane on the left side of the screen.</p>
-					<p>You may also hit the Reset button in the navigation pane at any time to reset the state of the visualizations and start the tour over again.</p>
-					<p class="hideable">Hit the button below to get started!</p>
+					<p class="bottom-margin">If a chart does not load properly, you may manually reload it using the Reload Chart button that will appear at the bottom right corner of each scene. You may also hit the Reset button in the navigation pane at any time to reset the state of the visualizations and start the tour over again.</p>
+					<p class="bottom-margin hideable">Hit the Start button below to get started!</p>
 					<button id="start-button" class="nice-button left-button hideable" onclick="NavTo('step1', 'start', 'heatmap');">Start</button>
 				</div>
 
@@ -56,40 +56,49 @@
 
 				<div id="step2-div" style="display:none">
 					<h1>Overall Grades</h1>
-					<p></p>
+					<p>The first grade category we will explore is Overall Grade, which is a composite score of the other three categories: Environment, Performance, and Progress. As with the other three scores, grades are assigned to each school based on a scale from A to F, which you can see in the legend on the right. Schools that have no data for this metric are labelled "NA". The colors on this chart were chosen to clearly display the divide between "good" grades (A and B) and grades that demonstrate a need for improvement (C, D, and F).</p>
+					<p>This chart shows that more schools have a grade in the A and B range than otherwise. Out of 35 school districts, 21 of them have more than 50% of schools in the A and B range, while 6 schools fall approximately on the 50% mark, and 8 schools are clearly below the 50% mark. This chart also shows that there are very few schools that fall in the D and F range, though there is a sizeable portion in most school districts that have no data.</p>
 					<svg id="step2-canvas" height="500px" width="1200px"></svg>
 					<br />
-					<button id="step2-button-prev" class="nice-button left-button hideable" onclick="NavTo('step1', 'step2', '');">Prev</button>
+					<p class="bottom-margin">Overall Grade is useful to compare districts with one catch-all metric, but more insights can be revealed through a deeper dive into the components of this score. Next, we will explore each of those three grade categories.</p>
+					<button id="step2-button-prev" class="nice-button left-button hideable" onclick="NavTo('step1', 'step2', 'heatmap');">Prev</button>
 					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step3', 'step2', 'env');">Next</button>
 					<button id="step2-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step2-canvas', 'overall');">Reload Chart</button>
 				</div>
 
 				<div id="step3-div" style="display:none">
 					<h1>Environment Grades</h1>
-					<p></p>
+					<p>The Environment Grade metric measures the quality of the school's environment, including such factors as the classroom environment and the overall neighborhood of the school. This is an important characteristic to consider about schools because the environment in which a student learns has a profound impact on the effectiveness of their education. A poor learning environment can inhibit the students' ability to learn and retain information.</p>
+					<p>Luckily, as we can see from the chart below, the environment grades for schools in each district tend to be higher than the overall grades. Many more schools are in the A and B range for this metric. Of 35 school districts, 27 have at least 50% of schools in the A and B range, while 5 fall approximately on the 50% mark and 3 are clearly below 50%.</p>
 					<svg id="step3-canvas" height="500px" width="1200px"></svg>
 					<br />
-					<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3', '');">Prev</button>
+					<p class="bottom-margin">Though this is generally good news, this chart reveals an area for improvement as well. Of each district's share of schools with grades below a B, more of those schools have D or F grades than in the overall data. This means that though school generally have better environment grades than overall grades, those that do not are noticably worse in the environment category than overall. Additionally, note that some districts, like 18 and 84, have a considerable amount of unavailable data. This makes it difficult to compare these districts to others.</p>
+					<button id="step3-button-prev" class="nice-button left-button hideable" onclick="NavTo('step2', 'step3', 'overall');">Prev</button>
 					<button id="step3-button-next" class="nice-button left-button hideable" onclick="NavTo('step4', 'step3', 'perf');">Next</button>
 					<button id="step3-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step3-canvas', 'env');">Reload Chart</button>
 				</div>
 
 				<div id="step4-div" style="display:none">
 					<h1>Performance Grades</h1>
-					<p></p>
+					<p>The next metric we will examine is the Performance Grades, which measure the quality of student performance in terms of such factors as grades in classes and test scores. Some argue that it is unfair to judge schools by the performance of their students because all students are different. Nevertheless, these performance grades can be a useful component in determining which schools are in need of improvement more than their peers.</p>
+					<p>It is immediately evident that all the districts have much lower scores in student performance than in the other metrics we are examining. Only 4 out of 35 school districts have at least 50% of schools in the A and B range, while the remaining 31 districts have far fewer than 50%. In most districts, the share of schools with a failing or near-failing grade is very high.</p>
 					<svg id="step4-canvas" height="500px" width="1200px"></svg>
 					<br />
-					<button id="step4-button-prev" class="nice-button left-button hideable" onclick="NavTo('step3', 'step4', '');">Prev</button>
+					<p class="bottom-margin">In one district in particular, district 75, nearly half of its schools (43%) have a grade of F. This helps us identify that district 75 severely needs improvement, but such a drastic difference from its peers may also suggest that the grading techniques may not represent this district's schools well. One notable characteristic about district 75 is that all of the schools that compose it teach students with disabilities. That being said, it may be that the existing comparison techniques do not sufficiently take this into account and unfairly put district 75 at a disadvantage. If this is not the case, then this information reveals a larger issue in that the educational needs of students with disabilities are not being met. Regardless, this chart helps identify that more analysis is necessary.</p>
+					<button id="step4-button-prev" class="nice-button left-button hideable" onclick="NavTo('step3', 'step4', 'env');">Prev</button>
 					<button id="step2-button-next" class="nice-button left-button hideable" onclick="NavTo('step5', 'step4', 'prog');">Next</button>
 					<button id="step4-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step4-canvas', 'perf');">Reload Chart</button>
 				</div>
 
 				<div id="step5-div" style="display:none">
 					<h1>Progress Grades</h1>
-					<p></p>
+					<p>The final score category we will examine is Progress Grades, which grade each school on student graduation rates. This metric is valuable because it identifies districts that have students that are held back or drop out of school, which means they may require additional resources to keep students supported and engaged.</p>
+					<p>This metric has considerably higher scores across the board compared to student performance. This is interesting because it may suggest that students are graduating regardless of whether they have performed well or had high quality educational experiences. In any case, 22 out of 35 districts had more than 50% of their constituent schools in the A and B range, while 5 districts hit approximately the 50% mark and 8 had less than 50%.</p>
 					<svg id="step5-canvas" height="500px" width="1200px"></svg>
 					<br />
-					<button id="step5-button-prev" class="nice-button left-button hideable" onclick="NavTo('step4', 'step5', '');">Prev</button>
+					<p class="bottom-margin">Three of the under-progressing districts were at or below 30% of schools in the A and B range, which identifies these districts as in serious need for improvement. Of these, district 18 is difficult to analyze because almost half (44%) of its schools have no data. The data for district 79 is also somewhat misleading because it consists of only one school. A closer look reveals that this district provides alternative school programs (known as YABC programs), of which many are distributed across other school districts. Finally, district 84 also has a large portion of missing data (29%), which makes it difficult to draw conclusions. This district contains charter schools in various geographic locations across New York City. The fact that only 30% of schools have an A or B for their progress grades may point to a larger issue in the graduation rates of charter schools.</p>
+					<p class="hideable bottom-margin">This concludes the guided tour of this dataset. Click on the Finish button below to unlock all charts and view them at your leisure.</p>
+					<button id="step5-button-prev" class="nice-button left-button hideable" onclick="NavTo('step4', 'step5', 'perf');">Prev</button>
 					<button id="step5-button-next" class="nice-button left-button hideable" onclick="ShowAllDivs();">Finish</button>
 					<button id="step5-button-reload" class="nice-button right-button hideable" onclick="CreateBarChart('step5-canvas', 'prog');">Reload Chart</button>
 				</div>

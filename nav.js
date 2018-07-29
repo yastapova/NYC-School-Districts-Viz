@@ -27,6 +27,14 @@ else
 }
 localStorage.setItem("show_all_divs", JSON.stringify(show_all_divs));
 
+step_vis_type = {
+	"step1" : "heatmap",
+	"step2" : "overall",
+	"step3" : "env",
+	"step4" : "perf",
+	"step5" : "prog"
+}
+
 function NavTo(show_step, hide_step, gradeName) {
 	if(show_all_divs)
 	{
@@ -51,9 +59,7 @@ function NavTo(show_step, hide_step, gradeName) {
 	$("#" + show_step + "-button").show();
 	$("#" + show_step + "-div").show();
 
-	if(nav_visible[show_step] === false) {
-		CreateVisualization(show_step, gradeName);
-	}
+	CreateVisualization(show_step, gradeName);
 	
 	nav_visible[show_step] = true;
 	localStorage.setItem("nav_visible", JSON.stringify(nav_visible));
@@ -82,6 +88,7 @@ function ShowAllDivs() {
 	for(var i = 0; i < keys.length-1; i++)
 	{
 		$("#" + keys[i] + "-div").show();
+		CreateVisualization(keys[i], step_vis_type[keys[i]]);
 	}
 	$("#start-div").show();
 
